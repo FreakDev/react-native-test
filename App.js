@@ -3,7 +3,7 @@ import { StatusBar, StyleSheet, Text, View, Image, FlatList } from 'react-native
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer, Touchable } from './modules/UI'
+import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer, Touchable, SelectList } from './modules/UI'
 import { BLUE } from './modules/UI/colors'
 
 import { DishList } from './modules/Dishes'
@@ -80,6 +80,7 @@ export default class App extends React.Component {
             <Layer name="schedule" from="top">
               <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <Text>horaire</Text>
+                <SelectList items={['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi']} />
               </View>
             </Layer>
           </LayerDeck>

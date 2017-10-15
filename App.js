@@ -62,11 +62,13 @@ export default class App extends React.Component {
         <StatusBar
           backgroundColor="black"
         />
-        <View style={styles.header}>
-          <HorizontalCenter style={{ marginLeft: 20 }}>
-            <Burger style={ styles.burger }/>
-          </HorizontalCenter>
-          <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={styles.header}>{
+          this.state.visibleLayers.length === 0 ? (
+            <HorizontalCenter style={{ marginLeft: 20 }}>
+              <Burger style={ styles.burger }/>
+            </HorizontalCenter>
+          ): null
+          }<View style={{ flex: 1, alignItems: 'center' }}>
             <HorizontalCenter style={{ marginLeft: 10 }}>
               <Image source={require('./assets/logo.png')} style={{ width: 125, height:25 }} resizeMethod="scale" />
             </HorizontalCenter>

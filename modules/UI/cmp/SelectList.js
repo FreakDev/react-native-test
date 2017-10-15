@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { View, Text } from 'react-native'
+import { BLUE, GREEN } from '../colors'
 
 import Touchable from './Touchable'
 
@@ -9,9 +10,28 @@ const styles = {
 
     },
     item: {
-        padding: 10,
-        borderColor: '#eee'
-    }
+        alignItems: 'center',
+        margin: 5,
+        borderRadius: 3,
+        borderWidth: 1,
+        padding: 12,
+        borderColor: '#cecece',
+        backgroundColor: '#fafafa'
+    },
+    itemText: {
+        color: BLUE
+    },
+    itemSelected: {}
+}
+
+styles.itemSelected = {
+    ...styles.item,
+    borderColor: GREEN,
+    backgroundColor: '#fff',
+}
+
+styles.itemSelectedText = {
+    color: GREEN    
 }
 
 export default class SelectList extends React.Component {
@@ -30,10 +50,12 @@ export default class SelectList extends React.Component {
             this.setState({
                 selected: itemPressed
             })
+            this.props.onChange && this.props.onChange(itemPressed)
         } else {
             this.setState({
                 selected: ''
             })
+            this.props.onChange && this.props.onChange('')            
         }
     }
 
@@ -44,8 +66,8 @@ export default class SelectList extends React.Component {
                     if (this.state.selected === '' || this.state.selected === item) {
                         return (
                             <Touchable key={k} onPress={ this.onPressItem.bind(this, item) } >
-                                <View style={ [styles.item, (this.state.selected === item ? {borderColor: BLUE} : {} )] }>
-                                    <Text>{ item }</Text>
+                                <View style={ this.state.selected === item ? styles.itemSelected : styles.item } >
+                                    <Text style={ this.state.selected === item ? styles.itemSelectedText : styles.itemText } >{ item }</Text>
                                 </View>
                             </Touchable>
                         )                            

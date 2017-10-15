@@ -4,6 +4,8 @@ import { StatusBar, StyleSheet, Text, View, Image, FlatList } from 'react-native
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer, Touchable } from './modules/UI'
+import { BLUE } from './modules/UI/colors'
+
 import { DishList } from './modules/Dishes'
 
 export default class App extends React.Component {
@@ -16,9 +18,10 @@ export default class App extends React.Component {
     }
 
     this.showLayer = this.showLayer.bind(this)
+    this.closeAllLayer = this.closeAllLayer.bind(this)
   }
 
-  showLayer(layer, show = true) {
+  showLayer(layer, show) {
     let nextState = this.state.visibleLayers.slice()
     let indexOf = nextState.indexOf(layer);
     if (!show && indexOf !== -1) {
@@ -33,43 +36,54 @@ export default class App extends React.Component {
       })
   }
 
+  closeAllLayer() {
+    this.setState({
+      visibleLayers: []
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <StatusBar
           backgroundColor="black"
         />
-        <LayerDeck visibleLayers={this.state.visibleLayers}>
-          <Layer name="roaster">
-            <View style={styles.header}>
-              <HorizontalCenter style={{ marginLeft: 20 }}>
-                <Burger style={ styles.burger }/>
-              </HorizontalCenter>
-              <View style={{ flex: 1, alignItems: 'center' }}>
-                <HorizontalCenter style={{ marginLeft: 10 }}>
-                  <Image source={require('./assets/logo.png')} style={{ width: 125, height:25 }} resizeMethod="scale" />
-                </HorizontalCenter>
-              </View>
-            </View>
-            <View style={styles.topbar}>
-              <TopBarButton style={{ flex: 1 }} icon="map-marker" text="Adresse"></TopBarButton>
-              <TopBarButton onPress={ this.showLayer.bind(this, 'schedule', true) } style={{ flex: 1 }} icon="clock-o" text="Votre horaire"></TopBarButton>
-            </View>
-            <View style={styles.roaster}>
-              <DishList />
-            </View>
-          </Layer>
-          <Layer name="schedule" from="top">
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
-              <Touchable onPress={ this.showLayer.bind(this, 'schedule', false) }>
-                <View style={{ position: 'absolute', right: 10, top: 10, opacity: 0.3 }}>
-                  <Icon name="close-circle-outline" size={40} />
-                </View>
+        <View style={styles.header}>
+          <HorizontalCenter style={{ marginLeft: 20 }}>
+            <Burger style={ styles.burger }/>
+          </HorizontalCenter>
+          <View style={{ flex: 1, alignItems: 'center' }}>
+            <HorizontalCenter style={{ marginLeft: 10 }}>
+              <Image source={require('./assets/logo.png')} style={{ width: 125, height:25 }} resizeMethod="scale" />
+            </HorizontalCenter>
+          </View>{
+          this.state.visibleLayers.length ? (
+            <HorizontalCenter style={{ right: 20 }}>
+              <Touchable onPress={ this.closeAllLayer }>
+                  <Icon name="close" size={35} color={ BLUE } />
               </Touchable>
-              <Text>horaire</Text>
-            </View>
-          </Layer>
-        </LayerDeck>
+            </HorizontalCenter>
+            ) :
+            null
+        }</View>
+        <View style={styles.body}>
+          <LayerDeck visibleLayers={this.state.visibleLayers}>
+            <Layer name="roaster">
+              <View style={styles.topbar}>
+                <TopBarButton style={{ flex: 1 }} icon="map-marker" text="Adresse"></TopBarButton>
+                <TopBarButton onPress={ this.showLayer.bind(this, 'schedule', true) } style={{ flex: 1 }} icon="clock-o" text="Votre horaire"></TopBarButton>
+              </View>
+              <View style={styles.roaster}>
+                <DishList />
+              </View>
+            </Layer>
+            <Layer name="schedule" from="top">
+              <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <Text>horaire</Text>
+              </View>
+            </Layer>
+          </LayerDeck>
+        </View>
       </View>
     );
   }
@@ -87,6 +101,9 @@ const styles = StyleSheet.create({
     flex: 7,
     flexDirection: 'row',
     justifyContent: 'space-between',    
+  },
+  body: {
+    flex: 93
   },
   topbar: {
     alignSelf: 'stretch',

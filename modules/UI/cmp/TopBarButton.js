@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { YELLOW, BLUE } from '../colors'
@@ -14,11 +14,11 @@ const styles = {
 
 export default ({ text, icon, style, onPress }) => {
     return (
-        <Touchable onPress={ onPress }>
+        <TouchableOpacity onPress={ onPress }>
             <View style={ Object.assign({}, style, styles.btn) }>
                 <Icon name={ icon } size={25} color={ YELLOW } />
                 <Text style={{ fontSize: 12, color: BLUE }}>{ text }</Text>
             </View>
-        </Touchable>
+        </TouchableOpacity>
     )
 }

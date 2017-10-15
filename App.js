@@ -1,7 +1,9 @@
 import React from 'react';
 import { StatusBar, StyleSheet, Text, View, Image, FlatList } from 'react-native';
 
-import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer } from './modules/UI'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+
+import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer, Touchable } from './modules/UI'
 import { DishList } from './modules/Dishes'
 
 export default class App extends React.Component {
@@ -59,6 +61,11 @@ export default class App extends React.Component {
           </Layer>
           <Layer name="schedule" from="top">
             <View style={{ flex: 1, backgroundColor: 'white' }}>
+              <Touchable onPress={ this.showLayer.bind(this, 'schedule', false) }>
+                <View style={{ position: 'absolute', right: 10, top: 10, opacity: 0.3 }}>
+                  <Icon name="close-circle-outline" size={40} />
+                </View>
+              </Touchable>
               <Text>horaire</Text>
             </View>
           </Layer>
@@ -82,11 +89,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',    
   },
   topbar: {
-    alignSelf: 'stretch',    
+    alignSelf: 'stretch',
     flex: 7,
     flexDirection: 'row',
     paddingTop: 5,
-    justifyContent: 'space-between',    
+    justifyContent: 'space-around',    
   },
   roaster: {
     flex: 86,

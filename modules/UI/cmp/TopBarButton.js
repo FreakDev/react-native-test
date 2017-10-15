@@ -12,9 +12,9 @@ const styles = {
     }
 }
 
-export default ({ text, icon, style }) => {
+export default ({ text, icon, style, onPress }) => {
     return (
-        <Touchable>
+        <Touchable onPress={ onPress }>
             <View style={ Object.assign({}, style, styles.btn) }>
                 <Icon name={ icon } size={25} color={ YELLOW } />
                 <Text style={{ fontSize: 12, color: BLUE }}>{ text }</Text>

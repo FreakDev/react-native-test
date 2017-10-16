@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { HorizontalCenter, Burger, TopBarButton, LayerDeck, Layer, Touchable } from './modules/UI'
 import { BLUE } from './modules/UI/colors'
 
-import { Schedule } from './modules/widget'
-import { DishList } from './modules/Dishes'
+import { Schedule, AddressPicker } from './modules/widget'
+import { DishList, DishDetail } from './modules/Dishes'
 
 export default class App extends React.Component {
 
@@ -18,13 +18,16 @@ export default class App extends React.Component {
       visibleLayers: [],
       basket: [],
       schedule: {},
-      address: ''
+      address: '',
+      more: {}
     }
 
     this.showLayer = this.showLayer.bind(this)
     this.closeAllLayer = this.closeAllLayer.bind(this)
 
     this.validateSchedule = this.validateSchedule.bind(this)
+    this.addToBasket = this.addToBasket.bind(this)
+    this.onViewMore = this.onViewMore.bind(this)
   }
 
   showLayer(layer, show) {
@@ -54,6 +57,18 @@ export default class App extends React.Component {
     })
 
     this.showLayer('schedule', false)
+  }
+
+  addToBasket() {
+
+  }
+
+  onViewMore(dish) {
+    let dishData = data.find((dishData) => (dishData.name === dish))
+    this.setState({
+      more: dishData
+    })
+    this.showLayer('details', true)
   }
 
   render() {
@@ -89,7 +104,16 @@ export default class App extends React.Component {
                 <TopBarButton onPress={ this.showLayer.bind(this, 'schedule', true) } style={{ flex: 1 }} icon="clock-o" text={ this.state.schedule.day ? this.state.schedule.day + ' ' + this.state.schedule.time : 'Votre horaire' }></TopBarButton>
               </View>
               <View style={styles.roaster}>
-                <DishList />
+                <DishList 
+                  data={data}
+                  onSelect={this.addToBasket} 
+                  onViewMore={this.onViewMore} 
+                />
+              </View>
+            </Layer>
+            <Layer name="details" from="bottom" >
+              <View style={{ flex: 1, backgroundColor: 'white' }}>
+                <DishDetail dish={ this.state.more } />
               </View>
             </Layer>
             <Layer name="map" from="top">

@@ -15,24 +15,13 @@ export default class DishList extends React.Component {
             return (
             <FlatList 
                 showsVerticalScrollIndicator={false}
-                data={[{
-                    key:1,
-                    photo: require('../../../assets/2598-brunch-steak-and-eggs.jpg'),
-                    name:'BRUNCH "STEAK N EGGS"', 
-                    price: '16.9'
-                },{
-                    key:2, 
-                    photo: require('../../../assets/2598-brunch-steak-and-eggs.jpg'),
-                    name:'BRUNCH "STEAK N EGGS"', 
-                    price: '16.9'
-                },{
-                    key:3, 
-                    photo: require('../../../assets/2598-brunch-steak-and-eggs.jpg'),
-                    name:'BRUNCH "STEAK N EGGS"', 
-                    price: '16.9'
-                }]}
+                data={this.props.data}
                 renderItem={({item}) => (
-                    <DishCard dish={item} />
+                    <DishCard 
+                        dish={item} 
+                        onViewMore={(dish) => { this.props.onViewMore && this.props.onViewMore(dish) }} 
+                        ononSelect={(dish) => { this.props.ononSelect && this.props.ononSelect(dish) }} 
+                    />
                 )}
             />)
     }

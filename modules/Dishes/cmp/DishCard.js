@@ -27,12 +27,12 @@ const textStyles = {
     color: BLUE
 }
 
-export default ({ dish }) => {
+export default ({ dish, onViewMore, onSelect }) => {
     return (
         <View style={{ height: 280, marginBottom: 12, flexDirection: 'row'}}>
             <View style={{ flex: 1 }} />
             <View style={{ flex: 90 }}>
-                <Touchable>
+                <Touchable onPress={(onViewMore && onViewMore.bind(this, dish.name))}>
                     <View style={{ flex: 4 }}>
                         <Image source={dish.photo} style={{ height: 220, width: undefined }} resizeMethod="scale" />
                         <Text style={{ position: 'absolute', fontSize: 16, bottom: 15, left: 15, color: 'white' }}>{ dish.name }</Text>
@@ -43,7 +43,7 @@ export default ({ dish }) => {
                         <Text style={ textStyles }>{ dish.price } €</Text>
                     </HorizontalCenter>
                     <View style={{ flex: 10, left: 30 }} />
-                    <Touchable>
+                    <Touchable onPress={(onSelect && onSelect.bind(this, dish.name))} >
                         <View style={{ flex: 1, right: 10 }}>
                             <View style={{ flex: 2 }} />                        
                             <View style={{ backgroundColor: '#f5a623', flex: 4, alignItems: 'center', borderRadius: 3 }}>

@@ -30,7 +30,7 @@ export default class Layer extends React.Component {
             }
         }
 
-        let animTime = 350
+        let animTime = 250
         if (!animated) {
             animTime = 0            
         }

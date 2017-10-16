@@ -99,7 +99,7 @@ export default class App extends React.Component {
             </Layer>            
             <Layer name="schedule" from="top">
               <View style={{ flex: 1, backgroundColor: 'white' }}>
-                <Schedule title="Quand souhaitez vous être livré(e)?" onValidate={ this.validateSchedule } />
+                <Schedule title="Quand souhaitez-vous être livré(e)?" onValidate={ this.validateSchedule } />
               </View>
             </Layer>
           </LayerDeck>

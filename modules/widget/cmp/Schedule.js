@@ -12,7 +12,7 @@ export default class Schedule extends React.Component {
         this.state = {
             day: '',
             timeFrame: '',
-            validateOpacity: 0.4
+            validateOpacity: 0.2
         }
 
         this.selectDay = this.selectDay.bind(this)
@@ -43,7 +43,7 @@ export default class Schedule extends React.Component {
         else 
             this.setState({
                 timeFrame: '',
-                validateOpacity: 0.4
+                validateOpacity: 0.2
             })
     }
 
@@ -55,7 +55,7 @@ export default class Schedule extends React.Component {
         const { title } = this.props
         return (
             <View style={{ flex: 1 }} >
-                <View style={{ flex: 10 }} >
+                <View style={{ flex: 9 }} >
                     <View style={{ alignItems: 'center' }} >
                         <Text>{ title }</Text>
                     </View>                

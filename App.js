@@ -9,6 +9,52 @@ import { BLUE } from './modules/UI/colors'
 import { Schedule, AddressPicker } from './modules/widget'
 import { DishList, DishDetail } from './modules/Dishes'
 
+const data = [{
+  key:1,
+  photo: require('./assets/1195-brunch-scandinave.jpg'),
+  name:'SCANDINAVIAN BRUNCH', 
+  price: '16.9',
+  keywords: [],  
+  description: `Un brunch tout droit venu du grand Nord, à déguster au chaud chez soi ? Foodchéri l'a fait pour vous ! 
+  
+On vous propose bien sûr un saumon gravlax, servi avec une crème au raifort (une plante herbacée très saine aux multiples vertus), une salade nordique de pommes de terre, concombre, céleri à l'aneth et des betteraves rôties. On n'oublie pas les oeufs, indispensables au brunch, avec une omelette de 3 oeufs à l'aneth. 
+  
+Pour le sucré, on vous a concocté un gâteau Danois à l'orange et son streussel à la noix de pécan (testé et approuvé à l'unanimité par toute la Foodchéribambelle), ainsi qu'un fromage blanc au pavot et sa compotée de cranberries. Un pot de beurre d'Echiré et un pot de confiture maison à la myrtille sont à tartiner généreusement sur une demi-baguette. Commandez à part votre jus préféré.`
+},{
+  key:2, 
+  photo: require('./assets/1442-brunch-francais-3.jpg'),
+  name:'BRUNCH FRANCAIS', 
+  price: '16.9',
+  keywords: [],
+  description: `Le terroir sur l'oreiller On vous livre aujourd'hui le meilleur du terroir français dans un brunch campagnard. Au programme : une brouillade d'oeufs archi crémeuse parfumée à l'huile de truffe, une généreuse part de quiche extra moelleuse aux poireaux, aux épinards et au comté AOC, une poêlée campagnarde de pommes de terre et de champignons rôtis à la ciboulette et une belle tranche de jambon blanc fermier Label Rouge. 
+  
+Côté sucré, avant ou après le salé (c'est là deux écoles, deux philosophies qui s'affrontent, ici, on fait partie du mouvement Life is short, eat dessert first), nous vous avons concocté une brioche perdue maison (pas perdue pour tout le monde) ultra régressive, une compote à la pomme et à la framboise. 
+  
+Pour tartiner comme jamais, vous trouverez une demi-baguette de pain frais et un petit beurre d'Isigny. On pousse le vice jusqu'à faire notre propre confiture, elle est ici à la myrtille.`
+},{
+  key:3, 
+  photo: require('./assets/2453-aubergine-vapeur-saigonaise.jpg'),
+  name:'AUBERGINE A LA SAIGONNAISE & CORIANDRE FRAICHE', 
+  price: '2.1',
+  keywords: ['SANS LACTOSE', 'VEGGIE', 'HEALTHY', 'SE MANGE FROID'],
+  description: `Une entrée fraîche et équilibrée en saveurs, avec des aubergines fondantes et une sauce à base de vinaigre de riz et de gingembre.`
+},{
+  key:4,
+  photo: require('./assets/900-poulet-lait-citron-pdt-2.jpg'),
+  name:'POULET AU LAIT & AU CITRON, POMMES DE TERRE ROTIES ET SALADE VERTE', 
+  price: '7.95',
+  keywords: ['A RECHAUFFER'],
+  description: `Le traditionnel poulet aux pommes de terre revu par notre chef ! Le poulet, d'origine française, est cuit dans un mélange de lait, de sauge, de citron avec une pointe d'ail et de cannelle. Le résultat ? Une viande super fondante et une sauce, d'un aspect étonnant - la rencontre du citron et du lait - mais totalement délicieuse. Les pommes de terre sont rôties à l'huile d'olive AOP de Kalamata, et le tout est accompagné d'une salade de roquette.`
+},{
+  key:5,
+  photo: require('./assets/219-curry-legumes-dhal-lentilles.jpg'),
+  name:'CURRY DE LEGUMES, DAHL DE LENTILLES CORAIL        BIO ET RIZ BASMATI COCO', 
+  price: '6.4',
+  keywords: ['SANS GLUTEN', 'VEGAN', 'A RECHAUFFER'],
+  description: `Carottes, patates douces, chou-fleur, et courgettes sont harmonieusement cuisinés dans un curry indien très savoureux. Notre chef accompagne ce plat d'un dahl de lentilles corail bio et d'un riz basmati parfumé à la noix de coco... Un régal !`
+}]
+
+
 export default class App extends React.Component {
 
   constructor(props) {
